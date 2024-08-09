@@ -32,7 +32,10 @@ function JobCard({ job }: { job: JobType }) {
           icon={<CalendarDays />}
           text={date}
         />
-        <Badge className='w-32  justify-center'>
+        <Badge
+          className='w-32  justify-center'
+          variant={job.status === 'interview' ? 'default' : job.status === 'pending' ? 'secondary' : 'destructive'}
+        >
           <JobInfo
             icon={<RadioTower className='w-4 h-4' />}
             text={job.status}
