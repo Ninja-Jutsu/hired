@@ -39,7 +39,6 @@ export async function createJobAction(values: CreateAndEditJobType): Promise<Job
   }
 }
 
-
 //! Fetch Jobs
 type GetAllJobsActionTypes = {
   search?: string
@@ -97,3 +96,21 @@ export async function getAllJobsAction({ search, jobStatus, page = 1, limit = 10
     return { jobs: [], count: 0, page: 1, totalPages: 0 }
   }
 }
+
+export async function deleteJobAction(id: string): Promise<JobType | null> {
+  const userId = authenticateAndRedirect()
+
+  try {
+    const job: JobType = await prisma.job.delete({
+      where: {
+        id,
+        clerkId: userId,
+      },
+    })
+    return job
+  } catch (error) {
+    return null
+  }
+}
+
+
