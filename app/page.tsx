@@ -4,19 +4,28 @@ import Link from 'next/link'
 import Logo from '../assets/logo.svg'
 import LandingImg from '../assets/main.svg'
 
+import { Inter, MedievalSharp } from 'next/font/google'
+const inter = Inter({ subsets: ['latin'] })
+const medievalSharp = MedievalSharp({ weight: ['400'], subsets: ['latin'] })
+
 export default function Home() {
   return (
-    <main className='max-w-6xl mx-auto'>
-      <header className='px-4 sm:px-8 py-6 '>
+    <main className='max-w-6xl mx-auto relative'>
+      <header className='px-4 sm:px-8 py-6 absolute top-[20vh] left-[20vw]'>
         <Image
           src={Logo}
-          alt='logo'
+          alt='Hired Logo'
+          priority
+          width={500}
+          height={500}
+          className='opacity-5 dark:bg-white'
         />
       </header>
       <section className='px-4 sm:px-8 h-screen -mt-20 grid lg:grid-cols-[1fr,400px] items-center'>
         <div>
-          <h1 className='capitalize text-4xl md:text-7xl font-bold'>
-            job <span className='text-primary'>tracking</span> app
+          <h1 className={`text-3xl md:text-6xl font-bold ${inter.className}`}>
+            <span className={`text-4xl md:text-7xl font-bold ${medievalSharp.className}`}>Hired</span>. A Job{' '}
+            <span className='text-primary'>Tracking</span> App
           </h1>
           <p className='leading-loose max-w-md mt-4 '>
             I am baby wayfarers hoodie next level taiyaki brooklyn cliche blue bottle single-origin coffee chia.
