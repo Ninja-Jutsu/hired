@@ -1,8 +1,15 @@
-'use client'
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
-
-import { useQuery } from '@tanstack/react-query'
-import { getChartsDataAction } from '@/utils/actions'
+'use client';
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+} from 'recharts';
+import { useQuery } from '@tanstack/react-query';
+import { getChartsDataAction } from '@/utils/actions';
 
 function ChartsContainer() {
   const { data, isPending } = useQuery({
@@ -30,10 +37,11 @@ function ChartsContainer() {
           <Bar
             dataKey='count'
             fill='hsl(142.1, 76.2%, 36.3%)'
-            barSize={75}
+            barSize={50}
           />
         </BarChart>
       </ResponsiveContainer>
+      <p>HELLO</p>
     </section>
   )
 }

@@ -9,7 +9,6 @@ import dayjs from 'dayjs'
 
 function authenticateAndRedirect(): string {
   const { userId } = auth()
-  console.log('userId')
   if (!userId) {
     redirect('/')
   }
@@ -83,17 +82,30 @@ export async function getAllJobsAction({ search, jobStatus, page = 1, limit = 10
       }
     }
 
+    // Filter returned jobs
+
+    // Skip a number of jobs depending on the page number
+    const skip = (page - 1) * limit
+
     const jobs: JobType[] = await prisma.job.findMany({
       where: whereClause,
+      skip,
+      take: limit,
       orderBy: {
         createdAt: 'desc',
       },
     })
 
-    return { jobs, count: 0, page: 1, totalPages: 0 }
+    const count: number = await prisma.job.count({
+      where: whereClause,
+    })
+
+    const totalPages = Math.ceil(count / limit)
+
+    return { jobs, count, page: 1, totalPages }
   } catch (error) {
     console.error(error)
-    return { jobs: [], count: 0, page: 1, totalPages: 0 }
+    return { jobs: [], count: 0, page, totalPages: 0 }
   }
 }
 
@@ -188,14 +200,15 @@ export async function getStatsAction(): Promise<{
 
 export async function getChartsDataAction(): Promise<Array<{ date: string; count: number }>> {
   const userId = authenticateAndRedirect()
-  const sixMonthsAgo = dayjs().subtract(6, 'month').toDate()
+  // If you would like to specify the number of months
+  // const sixMonthsAgo = dayjs().subtract(6, 'month').toDate()
   try {
     const jobs = await prisma.job.findMany({
       where: {
         clerkId: userId,
-        createdAt: {
-          gte: sixMonthsAgo,
-        },
+        // createdAt: {
+        //   gte: sixMonthsAgo,
+        // },
       },
       orderBy: {
         createdAt: 'asc',

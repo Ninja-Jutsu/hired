@@ -6,16 +6,27 @@ import Link from 'next/link'
 import { Button } from './ui/button'
 import { usePathname } from 'next/navigation'
 
+import { MedievalSharp } from 'next/font/google'
+
+const medievalSharp = MedievalSharp({ weight: ['400'], subsets: ['latin'] })
+
 function SideBar() {
   const pathname = usePathname()
 
   return (
     <aside className='py-4 px-8 bg-muted h-full'>
-      <Image
-        src={Logo}
-        alt='logo'
-        className='mx-auto'
-      />
+      <div className='flex justify-center items-center'>
+        <Link href='/'>
+          <Image
+            src={Logo}
+            alt='logo'
+            className='mx-auto opacity-75'
+            width={200}
+            height={200}
+          />
+        </Link>
+      </div>
+
       <div className='flex flex-col mt-20 gap-y-4'>
         {links.map(({ href, icon, label }) => {
           return (
