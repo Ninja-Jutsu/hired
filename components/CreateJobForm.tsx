@@ -10,6 +10,11 @@ import { Form } from '@/components/ui/form'
 
 import { CustomFormField, CustomFormSelect } from './FormComponents'
 
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { createJobAction } from '@/utils/actions'
+import { useToast } from '@/components/ui/use-toast'
+import { useRouter } from 'next/navigation'
+
 function CreateJobForm() {
   // 1. Define your form.
   const form = useForm<CreateAndEditJobType>({
@@ -22,11 +27,32 @@ function CreateJobForm() {
       mode: JobMode.FullTime,
     },
   })
+  const queryClient = useQueryClient()
+  const { toast } = useToast()
+  const router = useRouter()
+  const { mutate, isPending } = useMutation({
+    mutationFn: (values: CreateAndEditJobType) => createJobAction(values),
+    onSuccess: (data) => {
+      console.log('onSuccess')
+      if (!data) {
+        toast({
+          description: 'there was an error',
+        })
+        return
+      }
+      toast({ description: 'job created' })
+      // queryClient.invalidateQueries({ queryKey: ['jobs'] })
+      // queryClient.invalidateQueries({ queryKey: ['stats'] })
+      // queryClient.invalidateQueries({ queryKey: ['charts'] })
+
+      router.push('/jobs')
+      // form.reset();
+    },
+  })
 
   function onSubmit(values: CreateAndEditJobType) {
-    // Do something with the form values.
     // ✅ This will be type-safe and validated.
-    console.log(values)
+    mutate(values)
   }
   return (
     <Form {...form}>
@@ -40,37 +66,34 @@ function CreateJobForm() {
             name='position'
             control={form.control}
           />
-
           <CustomFormField
             name='company'
             control={form.control}
           />
-
           <CustomFormField
             name='location'
             control={form.control}
           />
-
           <CustomFormSelect
             name='status'
             control={form.control}
             labelText='job status'
             items={Object.values(JobStatus)}
           />
-
           <CustomFormSelect
             name='mode'
             control={form.control}
             labelText='job mode'
             items={Object.values(JobMode)}
           />
-
           <Button
             type='submit'
             className='self-end capitalize'
+            disabled={isPending}
           >
-            create job
+            {isPending ? 'loading...' : 'create job'}
           </Button>
+          
         </div>
       </form>
     </Form>
