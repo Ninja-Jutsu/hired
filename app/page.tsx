@@ -28,8 +28,7 @@ export default function Home() {
             <span className='text-primary'>Tracking</span> App
           </h1>
           <p className='leading-loose max-w-md mt-4 '>
-            I am baby wayfarers hoodie next level taiyaki brooklyn cliche blue bottle single-origin coffee chia.
-            Aesthetic post-ironic venmo, quinoa lo-fi tote bag adaptogen everyday carry meggings +1 brunch narwhal.
+          Streamline your job search and boost your chances of landing your dream job with our intuitive job tracking app. Organize applications, schedule interviews, and stay on top of your job search journey.
           </p>
           <Button
             asChild
