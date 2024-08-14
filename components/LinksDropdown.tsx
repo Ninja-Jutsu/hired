@@ -30,7 +30,7 @@ function LinksDropdown() {
             <DropdownMenuItem key={link.href}>
               <Link
                 href={link.href}
-                className='flex items-center gap-x-2 text-2xl border w-full'
+                className='flex items-center gap-x-2 text-2xl w-full p-1'
               >
                 {link.icon} <span className='capitalize'>{link.label}</span>
               </Link>
