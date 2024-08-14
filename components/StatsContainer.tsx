@@ -3,6 +3,8 @@ import { useQuery } from '@tanstack/react-query'
 import { getStatsAction } from '@/utils/actions'
 import StatsCard, { StatsLoadingCard } from './StatsCard'
 
+import StatsLoadingCards from '@/app/(dashboard)/stats/loading'
+
 function StatsContainer() {
   const { data, isPending } = useQuery({
     queryKey: ['stats'],
@@ -18,20 +20,25 @@ function StatsContainer() {
   //     </div>
   //   )
   return (
-    <div className='grid md:grid-cols-2 gap-4 lg:grid-cols-3'>
-      <StatsCard
-        title='pending jobs'
-        value={data?.pending || 0}
-      />
-      <StatsCard
-        title='interviews set'
-        value={data?.interview || 0}
-      />
-      <StatsCard
-        title='jobs declined'
-        value={data?.declined || 0}
-      />
-    </div>
+    <>
+      {isPending && <StatsLoadingCards />}
+      {!isPending && (
+        <div className='grid md:grid-cols-2 gap-4 lg:grid-cols-3'>
+          <StatsCard
+            title='pending jobs'
+            value={data?.pending || 0}
+          />
+          <StatsCard
+            title='interviews set'
+            value={data?.interview || 0}
+          />
+          <StatsCard
+            title='jobs declined'
+            value={data?.declined || 0}
+          />
+        </div>
+      )}
+    </>
   )
 }
 

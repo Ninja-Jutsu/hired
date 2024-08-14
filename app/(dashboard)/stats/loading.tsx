@@ -4,7 +4,7 @@ import { Redacted_Script } from 'next/font/google'
 
 const redacted = Redacted_Script({ subsets: ['latin'], weight: ['400'] })
 
-function loading() {
+function StatsLoadingCards() {
   return (
     <div>
       <div className='grid md:grid-cols-2 gap-4 lg:grid-cols-3'>
@@ -19,4 +19,4 @@ function loading() {
     </div>
   )
 }
-export default loading
+export default StatsLoadingCards

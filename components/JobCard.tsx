@@ -21,7 +21,7 @@ function JobCard({ job }: { job: JobType }) {
     <Card className='bg-muted'>
       <CardHeader>
         <CardTitle className='cursor-pointer hover:underline'>
-          {job.link && <a href={`https://${job.link}`}>{job.position}</a>}
+          {job.link && <a href={`${job.link}`}>{job.position}</a>}
           {!job.link && <p>{job.position}</p>}
         </CardTitle>
         <CardDescription>{job.company}</CardDescription>

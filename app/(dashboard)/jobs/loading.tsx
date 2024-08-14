@@ -11,11 +11,11 @@ function LoadingJobsList() {
   const skeletons = [1, 2, 3, 4, 5, 6]
   return (
     <div className=''>
-      <Skeleton className='bg-muted mb-16 p-24 rounded-lg w-[90vw] mx-auto sm:w-72' />
+      <Skeleton className='bg-muted mb-16 p-24 rounded-lg w-[90vw] mx-auto sm:w-full sm:p-12' />
       <div id='JobList'>
-        <div className='flex flex-col items-center sm:flex-row sm:justify-between gap-10 '>
-          <Skeleton className={`${redacted.className} text-2xl font-semibold pl-3 h-0`}>Hello World</Skeleton>
-          <Skeleton className='mb-8 h-8 w-full mx-4 sm:w-72 pr-3' />
+        <div className='flex flex-col items-center sm:flex-row sm:justify-between gap-10 mb-10'>
+          <Skeleton className={`${redacted.className} text-3xl pl-3 h-0`}>Hello World</Skeleton>
+          <Skeleton className='h-8 w-full mx-4 sm:w-72 pr-3' />
         </div>
 
         <div
@@ -24,7 +24,7 @@ function LoadingJobsList() {
         >
           {skeletons.map((item) => (
             <Skeleton
-              className='h-[300px] w-full sm:w-[600px]'
+              className='h-[300px] w-full'
               key={item}
             >
               <div className='p-6'>
