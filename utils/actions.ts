@@ -147,6 +147,7 @@ export async function getSingleJobAction(id: string): Promise<JobType | null> {
 
 export async function updateJobAction(id: string, values: CreateAndEditJobType): Promise<JobType | null> {
   const userId = authenticateAndRedirect()
+  console.log('updateJobAction')
 
   try {
     const job: JobType = await prisma.job.update({

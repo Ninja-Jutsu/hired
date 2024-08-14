@@ -51,6 +51,7 @@ function EditJobForm({ jobId }: { jobId: string }) {
       location: data?.location || '',
       status: (data?.status as JobStatus) || JobStatus.Pending,
       mode: (data?.mode as JobMode) || JobMode.FullTime,
+      link: '',
     },
   })
 
@@ -82,6 +83,10 @@ function EditJobForm({ jobId }: { jobId: string }) {
           {/* location */}
           <CustomFormField
             name='location'
+            control={form.control}
+          />
+          <CustomFormField
+            name='link'
             control={form.control}
           />
 
