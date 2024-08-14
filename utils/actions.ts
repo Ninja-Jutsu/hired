@@ -17,10 +17,9 @@ function authenticateAndRedirect(): string {
 
 export async function createJobAction(values: CreateAndEditJobType): Promise<JobType | null> {
   // await new Promise((resolve) => setTimeout(resolve, 3000))
-  console.log('createJobAction')
   const userId = authenticateAndRedirect()
   try {
-    console.log('createJobAction')
+    console.log(values)
 
     createAndEditJobSchema.parse(values)
     const job: JobType = await prisma.job.create({

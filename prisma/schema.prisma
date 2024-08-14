@@ -24,4 +24,5 @@ model Job {
   location  String
   status    String
   mode      String
+  link      String?
 }

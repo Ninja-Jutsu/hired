@@ -10,6 +10,7 @@ export type JobType = {
   location: string
   status: string
   mode: string
+  link: string | null
 }
 
 export enum JobStatus {
@@ -36,7 +37,8 @@ export const createAndEditJobSchema = z.object({
   }),
   status: z.nativeEnum(JobStatus),
   mode: z.nativeEnum(JobMode),
+  link: z.string()
 })
 
-// Create a type of the zod schema 
+// Create a type of the zod schema
 export type CreateAndEditJobType = z.infer<typeof createAndEditJobSchema>

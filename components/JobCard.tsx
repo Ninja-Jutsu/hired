@@ -10,12 +10,20 @@ import JobInfo from './JobInfo'
 import DeleteJobButton from './DeleteJobButton'
 
 function JobCard({ job }: { job: JobType }) {
-  const date = new Date(job.createdAt).toLocaleDateString()
+  const date = new Date(job.createdAt)
+  const today = new Date()
+
+  const timeDifference = Math.abs(today.getTime() - date.getTime())
+  const sevenDaysInMilliseconds = 7 * 24 * 60 * 60 * 1000
+  const expiring = timeDifference > sevenDaysInMilliseconds
 
   return (
     <Card className='bg-muted'>
       <CardHeader>
-        <CardTitle>{job.position}</CardTitle>
+        <CardTitle className='cursor-pointer hover:underline'>
+          {job.link && <a href={`https://${job.link}`}>{job.position}</a>}
+          {!job.link && <p>{job.position}</p>}
+        </CardTitle>
         <CardDescription>{job.company}</CardDescription>
       </CardHeader>
       <Separator />
@@ -30,7 +38,8 @@ function JobCard({ job }: { job: JobType }) {
         />
         <JobInfo
           icon={<CalendarDays />}
-          text={date}
+          text={date.toLocaleDateString()}
+          className={`${!expiring && 'text-red-500'}`}
         />
         <Badge
           className='w-32  justify-center'

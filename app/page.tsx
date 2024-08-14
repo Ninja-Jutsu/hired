@@ -28,7 +28,8 @@ export default function Home() {
             <span className='text-primary'>Tracking</span> App
           </h1>
           <p className='leading-loose max-w-md mt-4 '>
-          Streamline your job search and boost your chances of landing your dream job with our intuitive job tracking app. Organize applications, schedule interviews, and stay on top of your job search journey.
+            Streamline your job search and boost your chances of landing your dream job with our intuitive job tracking
+            app. Organize applications, schedule interviews, and stay on top of your job search journey.
           </p>
           <Button
             asChild

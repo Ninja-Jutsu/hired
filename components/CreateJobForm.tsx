@@ -25,6 +25,7 @@ function CreateJobForm() {
       location: '',
       status: JobStatus.Pending,
       mode: JobMode.FullTime,
+      link: '',
     },
   })
   const queryClient = useQueryClient()
@@ -74,6 +75,10 @@ function CreateJobForm() {
             name='location'
             control={form.control}
           />
+          <CustomFormField
+            name='link'
+            control={form.control}
+          />
           <CustomFormSelect
             name='status'
             control={form.control}
@@ -93,7 +98,6 @@ function CreateJobForm() {
           >
             {isPending ? 'loading...' : 'create job'}
           </Button>
-          
         </div>
       </form>
     </Form>
