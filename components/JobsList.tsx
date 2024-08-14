@@ -5,6 +5,8 @@ import { getAllJobsAction } from '@/utils/actions'
 import { useQuery } from '@tanstack/react-query'
 import ComplexButtonContainer from './ComplexButtonContainer'
 import LoadingJobsList from '@/app/(dashboard)/jobs/loading'
+import { Button } from './ui/button'
+import { useRouter, usePathname } from 'next/navigation'
 
 function JobsList() {
   const searchParams = useSearchParams()
@@ -17,6 +19,13 @@ function JobsList() {
     queryFn: () => getAllJobsAction({ search, jobStatus, page: pageNumber }),
   })
 
+  // Reset search in case of no result
+  const router = useRouter()
+  const pathname = usePathname()
+  function resetSearch() {
+    router.push(pathname)
+  }
+
   const jobs = data?.jobs || []
 
   const count = data?.count || 0
@@ -25,10 +34,16 @@ function JobsList() {
 
   if (isPending) return <LoadingJobsList />
 
-  if (jobs.length < 1) return <h2 className='text-xl'>No Jobs Found...</h2>
+  if (jobs.length < 1)
+    return (
+      <div className='w-full h-full flex flex-col gap-8 items-center'>
+        <h2 className='text-xl'>No Jobs Found</h2>
+        <Button onClick={resetSearch}>Reset Search</Button>
+      </div>
+    )
   return (
-    <>
-      <div className='flex items-center justify-between mb-8'>
+    <main>
+      <div className='flex flex-col sm:flex-row gap-4 items-center justify-between mb-8'>
         <h2 className='text-xl font-semibold capitalize '>{count} jobs found</h2>
         {totalPages < 2 ? null : (
           <ComplexButtonContainer
@@ -47,7 +62,7 @@ function JobsList() {
           )
         })}
       </div>
-    </>
+    </main>
   )
 }
 

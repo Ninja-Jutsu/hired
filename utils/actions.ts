@@ -53,7 +53,7 @@ export async function getAllJobsAction({ search, jobStatus, page = 1, limit = 10
   totalPages: number
 }> {
   const userId = authenticateAndRedirect()
-
+  await delay(2000)
   try {
     let whereClause: Prisma.JobWhereInput = {
       clerkId: userId,

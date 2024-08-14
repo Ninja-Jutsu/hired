@@ -24,11 +24,12 @@ function SearchForm() {
 
     params.set('search', search)
     params.set('jobStatus', jobStatus)
+
     router.push(`${pathname}?${params.toString()}`)
   }
   return (
     <form
-      className='bg-muted mb-16 p-8 grid sm:grid-cols-2 md:grid-cols-3  gap-4 rounded-lg'
+      className='bg-muted mb-8 sm:mb-16 p-8 grid sm:grid-cols-2 md:grid-cols-3  gap-4 rounded-lg'
       onSubmit={handleSubmit}
     >
       <Input

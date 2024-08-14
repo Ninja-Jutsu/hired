@@ -39,7 +39,7 @@ function JobCard({ job }: { job: JobType }) {
         <JobInfo
           icon={<CalendarDays />}
           text={date.toLocaleDateString()}
-          className={`${!expiring && 'text-red-500'}`}
+          className={`${expiring && 'text-red-500 font-semibold'}`}
         />
         <Badge
           className='w-32  justify-center'
