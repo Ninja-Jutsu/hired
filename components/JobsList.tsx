@@ -4,6 +4,7 @@ import { useSearchParams } from 'next/navigation'
 import { getAllJobsAction } from '@/utils/actions'
 import { useQuery } from '@tanstack/react-query'
 import ComplexButtonContainer from './ComplexButtonContainer'
+import LoadingJobsList from '@/app/(dashboard)/jobs/loading'
 
 function JobsList() {
   const searchParams = useSearchParams()
@@ -22,7 +23,7 @@ function JobsList() {
   const page = data?.page || 0
   const totalPages = data?.totalPages || 0
 
-  if (isPending) return <h2 className='text-xl'>Please Wait...</h2>
+  if (isPending) return <LoadingJobsList />
 
   if (jobs.length < 1) return <h2 className='text-xl'>No Jobs Found...</h2>
   return (

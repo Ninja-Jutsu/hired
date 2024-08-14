@@ -1,6 +1,8 @@
 import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Redacted_Script } from 'next/font/google'
 
-import { Skeleton } from './ui/skeleton'
+const redacted = Redacted_Script({ subsets: ['latin'], weight: ['400'] })
+
 
 type StatsCardsProps = {
   title: string
@@ -20,15 +22,10 @@ function StatsCards({ title, value }: StatsCardsProps) {
 
 export function StatsLoadingCard() {
   return (
-    <Card className='w-[330px] h-[88px]'>
-      <CardHeader className='flex flex-row justify-between items-center'>
-        <div className='flex items-center space-x-4'>
-          <Skeleton className='h-12 w-12 rounded-full' />
-          <div className='space-y-2'>
-            <Skeleton className='h-4 w-[150px]' />
-            <Skeleton className='h-4 w-[100px]' />
-          </div>
-        </div>
+    <Card className='w-[400px] h-[88px] bg-muted'>
+      <CardHeader className='flex flex-row justify-between items-center gap-6 min-w-[400px]'>
+        <p className={`text-2xl flex-1 text-white ${redacted.className}`}>Hello World</p>
+        <p className={`text-2xl text-green-500 ${redacted.className}`}>10</p>
       </CardHeader>
     </Card>
   )

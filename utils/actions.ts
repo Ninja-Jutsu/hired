@@ -6,6 +6,7 @@ import { JobType, CreateAndEditJobType, createAndEditJobSchema } from './types'
 import { redirect } from 'next/navigation'
 import { Prisma } from '@prisma/client'
 import dayjs from 'dayjs'
+import delay from 'delay'
 
 function authenticateAndRedirect(): string {
   const { userId } = auth()
@@ -169,7 +170,7 @@ export async function getStatsAction(): Promise<{
   declined: number
 }> {
   const userId = authenticateAndRedirect()
-  // await new Promise((resolve) => setTimeout(resolve, 5000));
+
   try {
     const stats = await prisma.job.groupBy({
       by: ['status'],

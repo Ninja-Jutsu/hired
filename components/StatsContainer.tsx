@@ -9,14 +9,14 @@ function StatsContainer() {
     queryFn: () => getStatsAction(),
   })
 
-  if (isPending)
-    return (
-      <div className='grid md:grid-cols-2 gap-4 lg:grid-cols-3'>
-        <StatsLoadingCard />
-        <StatsLoadingCard />
-        <StatsLoadingCard />
-      </div>
-    )
+  // if (isPending)
+  //   return (
+  //     <div className='grid md:grid-cols-2 gap-4 lg:grid-cols-3'>
+  //       <StatsLoadingCard />
+  //       <StatsLoadingCard />
+  //       <StatsLoadingCard />
+  //     </div>
+  //   )
   return (
     <div className='grid md:grid-cols-2 gap-4 lg:grid-cols-3'>
       <StatsCard

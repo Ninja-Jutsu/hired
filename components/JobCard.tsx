@@ -55,6 +55,7 @@ function JobCard({ job }: { job: JobType }) {
         <Button
           asChild
           size='sm'
+          className='text-white'
         >
           <Link href={`/jobs/${job.id}`}>Edit</Link>
         </Button>
