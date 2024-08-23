@@ -3,13 +3,13 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { ClerkProvider } from '@clerk/nextjs'
 import Providers from './providers'
+import { Analytics } from '@vercel/analytics/react'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'JobStreet',
   description: 'Job application tracking system for job hunters',
-  
 }
 
 export default function RootLayout({
@@ -27,6 +27,7 @@ export default function RootLayout({
           <Providers>{children}</Providers>
         </body>
       </html>
+      <Analytics />
     </ClerkProvider>
   )
 }
