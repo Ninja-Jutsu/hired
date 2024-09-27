@@ -11,6 +11,10 @@ It allows users to:
 - View & Edit jobs details
 - Review a yearly report of job application (Pending, Awaiting Interview, Declined)
 
+**Test Coordinations:**
+Email: hired.test@bardachDev.com
+Password: 123456
+
 **Installation:**
 
 1. Clone the repository: `git clone https://github.com/Ninja-Jutsu/hired.git`
